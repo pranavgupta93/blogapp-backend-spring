@@ -13,30 +13,36 @@ import org.springframework.web.bind.annotation.RestController;
 public class BlogController {
 	@Autowired
 	private BlogService blogservice;
-	//@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/allblogs")
-	public String getBlogs(){
+	public List<BlogModel> getBlogs(){
+		System.out.println("getting all blogs");
 		return blogservice.getAllBlogs();
 	}
-	//@CrossOrigin(origins = "http://localhost:4200")
+	
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/blogs/{id}")
-	public String getSingleBlog(@PathVariable int id){
+	public BlogModel getSingleBlog(@PathVariable int id){
 		return blogservice.getSingleBlog(id);
 	}
-	//@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method=RequestMethod.POST,value="/postblog")
-	public void postBlog(@RequestBody String blogmodelstring){
-		blogservice.postBlog(blogmodelstring);
+	public BlogModel postBlog(@RequestBody BlogModel blogmodelobj){
+		System.out.println("post blog controller");
+		return blogservice.postBlog(blogmodelobj);
+		
 	}
-	//@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method=RequestMethod.POST,value="/deleteblog/{id}")
-	public String deleteBlog(@PathVariable int id){
+	public void deleteBlog(@PathVariable int id){
+		System.out.println("id to be deleted "+id);
 		blogservice.deleteBlog(id);
-		return "deleted";
+		
 	}
-	//@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method=RequestMethod.PUT,value="/updateblog/{id}")
-	public void updateBlog(@PathVariable int id,@RequestBody String blogmodelstring){
-		blogservice.updateBlog(id, blogmodelstring);
+	public void updateBlog(@PathVariable int id,@RequestBody BlogModel blogmodelobj){
+		System.out.println("update blog controller");
+		blogservice.updateBlog(id, blogmodelobj);
 	}
 }

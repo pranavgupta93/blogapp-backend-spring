@@ -14,6 +14,12 @@ import org.codehaus.jackson.annotate.JsonPropertyOrder;
 public class BlogModel implements Serializable
 {
 	
+	@Override
+	public String toString() {
+		return "BlogModel [blogtitle=" + blogtitle + ", blogdesc=" + blogdesc
+				+ ", blogcateg=" + blogcateg + ", blogbody=" + blogbody
+				+ ", blogid=" + blogid + "]";
+	}
 	private String blogtitle;
 	private String blogdesc;
 	@JsonIgnore
