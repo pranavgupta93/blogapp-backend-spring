@@ -2,6 +2,9 @@ package com.blogapp.blog.controllers;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonPropertyOrder;
 @JsonPropertyOrder(
@@ -11,6 +14,7 @@ import org.codehaus.jackson.annotate.JsonPropertyOrder;
 				"blogbody"
 		}
 		)
+@Entity
 public class BlogModel implements Serializable
 {
 	
@@ -25,6 +29,7 @@ public class BlogModel implements Serializable
 	@JsonIgnore
 	private String blogcateg;
 	private String blogbody;
+	@Id
 	private int blogid;
 	public BlogModel(){}
 	public BlogModel(int blogid,String blogtitle, String blogdesc, String blogcateg,
